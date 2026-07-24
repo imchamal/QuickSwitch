@@ -31,6 +31,8 @@ body.square-avatars #quickSwitchImg {
     background-color: var(--SmartThemeBlurTintColor);
     backdrop-filter: blur(var(--SmartThemeBlurStrength));
     box-shadow: 0 0 10px var(--black50a);
+    border-radius: 10px;
+    overflow: hidden;
 
     /* 그리드 열 수·크기 조절 변수 */
     --itemsPerRow: 4;
@@ -58,13 +60,13 @@ body.big-avatars #quickSwitchMenu {
     flex: 1;
     padding: 6px 0;
     background: none;
-    border: 1px solid var(--SmartThemeBorderColor);
-    border-radius: 4px;
+    border: none;
     color: var(--SmartThemeBodyColor);
     opacity: 0.55;
     cursor: pointer;
     font-size: 0.82em;
-    transition: opacity 0.15s, background-color 0.15s;
+    font-weight: normal;
+    transition: opacity 0.15s, font-weight 0.15s;
 }
 
 .quickSwitchTab:hover {
@@ -73,7 +75,7 @@ body.big-avatars #quickSwitchMenu {
 
 .quickSwitchTab.active {
     opacity: 1;
-    background-color: var(--SmartThemeBorderColor);
+    font-weight: 600;
 }
 
 /* ── 아이템 목록 ─────────────────────────────────────────────── */
@@ -81,6 +83,9 @@ body.big-avatars #quickSwitchMenu {
 #quickSwitchMenu ul {
     margin: 0;
     border: none;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
     box-sizing: border-box;
     flex-direction: row;
     flex-wrap: wrap;
@@ -126,7 +131,7 @@ body.big-avatars #quickSwitchMenu li {
     object-position: center center;
     cursor: pointer;
     filter: opacity(0.5);
-    transition: filter 0.1s;
+    transition: filter 0.1s, box-shadow 0.1s;
 }
 
 body.square-avatars .quickSwitchMenuImg {
@@ -137,10 +142,11 @@ body.big-avatars .quickSwitchMenuImg {
     border-radius: 10px;
 }
 
-/* 현재 선택된 항목 / 기본 페르소나: 선명하게 표시 */
+/* 현재 선택된 항목 / 기본 페르소나: 선명하게 + 입체감 있게 표시 */
 .quickSwitchMenuImg.selected,
 .quickSwitchMenuImg.default {
     filter: opacity(1);
+    box-shadow: 0 0 8px var(--black70a);
 }
 
 /* ── 빈 상태 메시지 ──────────────────────────────────────────── */
