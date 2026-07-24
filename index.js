@@ -147,11 +147,12 @@ function renderCharacters(ul) {
         // this_chid는 script.js에서 export된 live binding
         const isSelected = i === Number(this_chid);
 
-        const item = $('<li tabindex="0" class="list-group-item interactable"><img class="quickSwitchMenuImg"/></li>');
+        const item = $('<li tabindex="0" class="list-group-item interactable"><div class="quickSwitchItemInner"><img class="quickSwitchMenuImg"/><span class="quickSwitchName"></span></div></li>');
         item.find('img')
             .attr('src', imgUrl)
             .attr('title', char.name)
             .toggleClass('selected', isSelected);
+        item.find('.quickSwitchName').text(char.name);
 
         item.on('click', () => {
             closeMenu();
@@ -182,12 +183,13 @@ async function renderPersonas(ul) {
         const isSelected = avatar === user_avatar;
         const isDefault = avatar === power_user.default_persona;
 
-        const item = $('<li tabindex="0" class="list-group-item interactable"><img class="quickSwitchMenuImg"/></li>');
+        const item = $('<li tabindex="0" class="list-group-item interactable"><div class="quickSwitchItemInner"><img class="quickSwitchMenuImg"/><span class="quickSwitchName"></span></div></li>');
         item.find('img')
             .attr('src', imgUrl)
             .attr('title', imgTitle)
             .toggleClass('selected', isSelected)
             .toggleClass('default', isDefault);
+        item.find('.quickSwitchName').text(name);
 
         item.on('click', async () => {
             closeMenu();
