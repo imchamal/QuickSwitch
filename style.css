@@ -2,14 +2,14 @@
 
 #quickSwitch {
     position: relative;
-    width: var(--bottomFormBlockSize);
-    height: var(--bottomFormBlockSize);
+    width: calc(var(--bottomFormBlockSize) * 0.8);
+    height: calc(var(--bottomFormBlockSize) * 0.8);
     order: -1;
 }
 
 #quickSwitchImg {
     border-radius: 50%;
-    border: 1px solid transparent;
+    border: 1px solid var(--white30a);
     box-shadow: 0 0 5px var(--black50a);
     outline: 2px solid transparent;
     width: 100%;
@@ -17,6 +17,12 @@
     object-fit: cover;
     object-position: center center;
     cursor: pointer;
+    transition: border-color 0.1s, transform 0.12s ease;
+}
+
+#quickSwitch:hover #quickSwitchImg {
+    border-color: var(--SmartThemeBorderColor);
+    transform: scale(1.06);
 }
 
 /* square avatars 모드일 때 버튼도 사각형으로 */
@@ -148,7 +154,7 @@ body.big-avatars #quickSwitchMenu {
     transition: border-color 0.1s;
 }
 
-.quickSwitchMenuImg:hover {
+#quickSwitchMenu li:hover .quickSwitchMenuImg {
     border-color: var(--SmartThemeBorderColor);
 }
 
