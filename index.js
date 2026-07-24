@@ -235,26 +235,6 @@ function selectCharacter(charId) {
     console.error(`[QuickSwitch] 캐릭터 "${targetAvatar}" 에 해당하는 DOM 요소를 찾지 못했습니다.`);
 }
 
-    // Fallback: 캐릭터 블록이 숨겨져 있거나 아직 렌더링되지 않은 경우
-    // SillyTavern이 캐릭터 목록을 lazy하게 렌더링할 때 발생할 수 있다.
-    //
-    // 대안 1) script.js에서 selectCharacterById를 export하는 버전:
-    //   import { selectCharacterById } from '../../../../script.js';
-    //   selectCharacterById(charId);
-    //
-    // 대안 2) 직접 fetch로 선택:
-    //   await fetch('/api/characters/select', {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify({ id: charId }),
-    //   });
-    //
-    console.error(
-        `[QuickSwitch] 캐릭터(chid=${charId}, name=${characters[charId]?.name}) 선택 실패.\n` +
-        '위 fallback 주석을 참고해 SillyTavern 버전에 맞는 방법으로 교체하세요.',
-    );
-}
-
 // ─── 버튼 이미지 갱신 ────────────────────────────────────────────
 
 /**
