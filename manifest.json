@@ -1,0 +1,12 @@
+{
+    "display_name": "Quick Switch",
+    "loading_order": 101,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "",
+    "version": "1.0.0",
+    "homePage": "",
+    "auto_update": false
+}
