@@ -48,7 +48,6 @@ function addQuickSwitchButton() {
     const html = `
     <div id="quickSwitch" class="interactable" tabindex="0">
         <img id="quickSwitchImg" src="/img/ai4.png" />
-        <div id="quickSwitchCaret" class="fa-fw fa-solid fa-caret-up"></div>
     </div>`;
 
     $('#leftSendForm').append(html);
@@ -93,9 +92,7 @@ async function openMenu() {
     // 기본 탭 내용 렌더링
     await renderList(menu.find('ul'), activeTab);
 
-    // 캐럿 방향 전환 (아래 → 위)
-    $('#quickSwitchCaret').toggleClass('fa-caret-up fa-caret-down');
-
+    
     menu.fadeIn(animation_duration);
 
     // Popper로 버튼 위쪽에 팝업 위치 고정
@@ -109,7 +106,6 @@ async function openMenu() {
 
 function closeMenu() {
     isOpen = false;
-    $('#quickSwitchCaret').toggleClass('fa-caret-up fa-caret-down');
     $('#quickSwitchMenu').fadeOut(animation_duration, () => {
         $('#quickSwitchMenu').remove();
     });
