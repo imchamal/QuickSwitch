@@ -126,6 +126,14 @@ body.big-avatars #quickSwitchMenu {
     transform: scale(1.06);
 }
 
+.quickSwitchItemInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 3px;
+}
+
 /* ── 아이템 이미지 ───────────────────────────────────────────── */
 
 .quickSwitchMenuImg {
@@ -161,6 +169,7 @@ body.big-avatars .quickSwitchMenuImg {
 /* ── 아이템 이름 라벨 ────────────────────────────────────────── */
 
 .quickSwitchName {
+    display: block;
     width: 100%;
     max-width: var(--blockWidth);
     text-align: center;
