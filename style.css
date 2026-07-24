@@ -24,33 +24,23 @@ body.square-avatars #quickSwitchImg {
     border-radius: 2px;
 }
 
-#quickSwitchCaret {
-    display: flex;
-    justify-content: flex-end;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: calc(var(--bottomFormBlockSize) / 3);
-    height: calc(var(--bottomFormBlockSize) / 3);
-    z-index: 10;
-    font-size: calc(var(--bottomFormBlockSize) / 3);
-    text-shadow: 0 0 5px var(--black50a);
-}
-
 /* ── 팝업 메뉴 컨테이너 ──────────────────────────────────────── */
 
 #quickSwitchMenu {
     z-index: 30000;
+    background-color: var(--SmartThemeBlurTintColor);
     backdrop-filter: blur(var(--SmartThemeBlurStrength));
-    box-shadow: none;
+    box-shadow: 0 0 10px var(--black50a);
 
     /* 그리드 열 수·크기 조절 변수 */
-    --itemsPerRow: 5;
+    --itemsPerRow: 4;
     --blockWidth: 50px;
+    --rowHeight: 50px;
 }
 
 body.big-avatars #quickSwitchMenu {
     --blockWidth: 60px;
+    --rowHeight: 90px;
 }
 
 /* ── 탭 헤더 ─────────────────────────────────────────────────── */
@@ -67,20 +57,21 @@ body.big-avatars #quickSwitchMenu {
     padding: 6px 0;
     background: none;
     border: none;
-    border-bottom: 2px solid transparent;
+    border-radius: 4px 4px 0 0;
     color: var(--white50a);
     cursor: pointer;
     font-size: 0.82em;
-    transition: color 0.15s, border-color 0.15s;
+    transition: color 0.15s, background-color 0.15s;
 }
 
 .quickSwitchTab:hover {
     color: var(--white70a);
+    background-color: var(--white20a);
 }
 
 .quickSwitchTab.active {
     color: var(--white80a);
-    border-bottom-color: var(--white50a);
+    background-color: var(--white30a);
 }
 
 /* ── 아이템 목록 ─────────────────────────────────────────────── */
@@ -90,15 +81,13 @@ body.big-avatars #quickSwitchMenu {
     flex-direction: row;
     flex-wrap: wrap;
     max-width: calc(var(--itemsPerRow) * var(--blockWidth) + 35px);
-    justify-content: space-around;
+    justify-content: flex-start;
     padding: 5px;
     gap: 5px;
 
-    /* 스크롤로 긴 목록 대응 */
-    max-height: 75vh;
-    max-height: 75svh;
+    /* 4행까지만 보이고 이후는 스크롤 */
+    max-height: calc((var(--rowHeight) + 5px) * 4);
     overflow-y: auto;
-    overflow-x: hidden;
 }
 
 #quickSwitchMenu li {
