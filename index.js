@@ -50,7 +50,7 @@ function addQuickSwitchButton() {
         <img id="quickSwitchImg" src="/img/ai4.png" />
     </div>`;
 
-    $('#leftSendForm').append(html);
+    $('#leftSendForm').prepend(html);
     $('#quickSwitch').on('click', () => toggleMenu());
 }
 
