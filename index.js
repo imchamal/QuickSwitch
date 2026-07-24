@@ -1,4 +1,4 @@
-import { animation_duration, eventSource, event_types, getThumbnailUrl, characters, this_chid } from '../../../../script.js';
+import { animation_duration, eventSource, event_types, getThumbnailUrl, characters, this_chid, selectCharacterById } from '../../../../script.js';
 import { power_user } from '../../../power-user.js';
 import { getUserAvatar, getUserAvatars, setUserAvatar, user_avatar } from '../../../personas.js';
 import { Popper } from '../../../../lib.js';
@@ -217,33 +217,14 @@ async function renderPersonas(ul) {
  *
  * @param {number} charId  characters 배열의 인덱스
  */
-function selectCharacter(charId) {
-    // 캐릭터 목록 DOM 요소 탐색
-    const el = document.querySelector(`#rm_print_characters_block [chid="${charId}"]`);
-
-    if (el) {
-        el.click();
-        return;
-    }
-
-    // Fallback: 캐릭터 블록이 숨겨져 있거나 아직 렌더링되지 않은 경우
-    // SillyTavern이 캐릭터 목록을 lazy하게 렌더링할 때 발생할 수 있다.
-    //
-    // 대안 1) script.js에서 selectCharacterById를 export하는 버전:
-    //   import { selectCharacterById } from '../../../../script.js';
-    //   selectCharacterById(charId);
-    //
-    // 대안 2) 직접 fetch로 선택:
-    //   await fetch('/api/characters/select', {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify({ id: charId }),
-    //   });
-    //
-    console.error(
-        `[QuickSwitch] 캐릭터(chid=${charId}, name=${characters[charId]?.name}) 선택 실패.\n` +
-        '위 fallback 주석을 참고해 SillyTavern 버전에 맞는 방법으로 교체하세요.',
-    );
+/**
+ * SillyTavern의 selectCharacterById를 직접 호출해 캐릭터를 전환한다.
+ * DOM 클릭 시뮬레이션 없이 동작하므로 캐릭터 목록 패널이
+ * 렌더링되어 있지 않아도 안전하게 작동한다.
+ * @param {number} charId  characters 배열의 인덱스
+ */
+async function selectCharacter(charId) {
+    await selectCharacterById(charId);
 }
 
 // ─── 버튼 이미지 갱신 ────────────────────────────────────────────
