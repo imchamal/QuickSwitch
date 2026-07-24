@@ -218,13 +218,22 @@ async function renderPersonas(ul) {
  * @param {number} charId  characters 배열의 인덱스
  */
 function selectCharacter(charId) {
-    // 캐릭터 목록 DOM 요소 탐색
-    const el = document.querySelector(`#rm_print_characters_block [chid="${charId}"]`);
+    const targetAvatar = characters[charId]?.avatar;
+    if (!targetAvatar) return;
 
-    if (el) {
-        el.click();
-        return;
+    const els = document.querySelectorAll('#rm_print_characters_block .character_select');
+    for (const el of els) {
+        const img = el.querySelector('img');
+        if (!img) continue;
+        const src = decodeURIComponent(img.getAttribute('src') ?? '');
+        if (src.includes(targetAvatar)) {
+            el.click();
+            return;
+        }
     }
+
+    console.error(`[QuickSwitch] 캐릭터 "${targetAvatar}" 에 해당하는 DOM 요소를 찾지 못했습니다.`);
+}
 
     // Fallback: 캐릭터 블록이 숨겨져 있거나 아직 렌더링되지 않은 경우
     // SillyTavern이 캐릭터 목록을 lazy하게 렌더링할 때 발생할 수 있다.
